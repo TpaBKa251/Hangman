@@ -6,9 +6,22 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Record для категоризированного хранения слов {@link Word}
+ * по сложностям {@link DifficultyEnum} и категориям {@link Category}
+ * @param dictionary {@link HashMap} с ключом {@code DifficultyEnum} и значением {@code HashMap},
+ *                                 в которой ключ - {@code Category}, значение - {@link List} из слов {@code Word}
+ */
 public record Dictionary(HashMap<DifficultyEnum, HashMap<Category, List<Word>>> dictionary) {
+    /**
+     * Вложенный статический класс для инициализации словаря
+     */
     static class DictionaryInitializer {
 
+        /**
+         * Статический метод, создающий заполненный словарь
+         * @return объект {@link Dictionary}
+         */
         public static Dictionary initialize() {
             HashMap<DifficultyEnum, HashMap<Category, List<Word>>> dictionary = new HashMap<>();
 
@@ -47,10 +60,3 @@ public record Dictionary(HashMap<DifficultyEnum, HashMap<Category, List<Word>>> 
         }
     }
 }
-
-/*
-feat: добавлен класс Dictionary
-
-Добавлен класс Dictionary для структуризации хранения экземпляров класса Word по сложностям DifficultyEnum и категориям
-Category.
- */
