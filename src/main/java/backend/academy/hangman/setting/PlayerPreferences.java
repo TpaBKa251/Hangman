@@ -8,12 +8,24 @@ import backend.academy.hangman.output.PlayerPreferencesMessages;
 import java.security.SecureRandom;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Класс для настройки первичных настроек игры (предпочтения пользователя).
+ * Настраивается сложность {@link DifficultyEnum} и категория {@link Category}
+ */
 @RequiredArgsConstructor
 public class PlayerPreferences {
     private final Reader reader;
     private final SecureRandom rand;
+    /**
+     * Сообщения, выводящиеся пользователю {@link PlayerPreferencesMessages}
+     */
     private final PlayerPreferencesMessages messages = PlayerPreferencesMessages.initialize();
 
+    /**
+     * Метод выбора сложности игры. Если пользователь введет сложность,
+     * которой нет или любой другой символ (в том числе ничего), будет выбрана случайная сложность
+     * @return элемент перечисления {@link DifficultyEnum}
+     */
     public DifficultyEnum selectDifficulty() {
         DifficultyEnum[] difficulties = DifficultyEnum.values();
 
@@ -30,6 +42,11 @@ public class PlayerPreferences {
         }
     }
 
+    /**
+     * Метод выбора категории слова. Если пользователь введет категорию,
+     * которой нет или любой другой символ (в том числе ничего), будет выбрана случайная категория
+     * @return элемент перечисления {@link Category}
+     */
     public Category selectCategory() {
         Category[] categories = Category.values();
 
