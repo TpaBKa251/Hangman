@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 /**
- *Класс для выбора случайного слова {@link Word} из словаря {@link Dictionary}
+ * Класс для выбора случайного слова {@link Word} из словаря {@link Dictionary}
  * по заданным параметрам: сложности {@link DifficultyEnum} и категории {@link Category}
  */
 @RequiredArgsConstructor
