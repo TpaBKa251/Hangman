@@ -7,6 +7,10 @@ import backend.academy.hangman.output.Interface;
 import backend.academy.hangman.state.GameBaseState;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Класс состояния поражения (проигрыша).
+ * Выводит сообщение о проигрыше и предлагает начать новую попытку или выйти из игры
+ */
 @RequiredArgsConstructor
 public class LoseState implements GameBaseState {
     private final Reader reader;

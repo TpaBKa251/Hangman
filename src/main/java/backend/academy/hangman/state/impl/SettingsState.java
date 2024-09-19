@@ -9,6 +9,10 @@ import backend.academy.hangman.setting.PlayerPreferences;
 import backend.academy.hangman.state.GameBaseState;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Класс состояния настройки игры. Объединяет работу классов
+ * {@link PlayerPreferences} для первичной настройки и {@link GameConfigurator} для вторичной настройки
+ */
 @RequiredArgsConstructor
 public class SettingsState implements GameBaseState {
     private final PlayerPreferences playerPreferences;
