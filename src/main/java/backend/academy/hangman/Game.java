@@ -16,12 +16,17 @@ public class Game {
     @Getter
     @Setter
     private Settings settings;
+    private final GameStatesManager gameStatesManager;
 
     /**
      * Метод для запуска игры
      */
     public void play() {
         printInterface();
+
+        while (gameStatesManager.currentState() != null) {
+            gameStatesManager.stateHandle(this);
+        }
     }
 
     /**
