@@ -7,6 +7,7 @@ import backend.academy.hangman.enums.GameStates;
 import backend.academy.hangman.setting.GameConfigurator;
 import backend.academy.hangman.setting.PlayerPreferences;
 import backend.academy.hangman.setting.Settings;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@DisplayName("Тесты состояния настройки SettingsState")
 @ExtendWith(MockitoExtension.class)
 class SettingsStateTest {
 
@@ -34,6 +36,7 @@ class SettingsStateTest {
     @InjectMocks
     SettingsState settingsState;
 
+    @DisplayName("Тест корректности вызовов методов по установки настроек игры")
     @Test
     public void testHandle() {
         DifficultyEnum difficulty = DifficultyEnum.EASY;
@@ -51,6 +54,7 @@ class SettingsStateTest {
         verify(game).settings(settings);
     }
 
+    @DisplayName("Тест переключения в состояние процесса игры")
     @Test
     public void testNextState() {
         GameStates expectedState = GameStates.PLAYING;

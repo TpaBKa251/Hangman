@@ -4,9 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Тесты класса для вывода текста в консоль Interface")
 public class InterfaceTest {
 
     private ByteArrayOutputStream outputStream;
@@ -24,6 +26,7 @@ public class InterfaceTest {
         System.setOut(originalSystemOut);
     }
 
+    @DisplayName("Тест вывода текста с новой строки")
     @Test
     public void testPrintWithNewLine() {
         Interface.print("Игра \"Виселица\"", true);
@@ -32,6 +35,7 @@ public class InterfaceTest {
         assertThat(output).isEqualTo("Игра \"Виселица\"");
     }
 
+    @DisplayName("Тест вывода текста с текущей строки")
     @Test
     public void testPrintWithoutNewLine() {
         Interface.print("Игра ", false);

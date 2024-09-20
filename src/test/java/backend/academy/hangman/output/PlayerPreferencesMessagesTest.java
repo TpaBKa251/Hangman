@@ -2,11 +2,14 @@ package backend.academy.hangman.output;
 
 import backend.academy.hangman.enums.Category;
 import backend.academy.hangman.enums.DifficultyEnum;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Тесты сообщений о выборе PlayerPreferencesMessages")
 public class PlayerPreferencesMessagesTest {
 
+    @DisplayName("Тест корректности генерации сообщений")
     @Test
     public void testInitialize() {
         DifficultyEnum[] difficulties = DifficultyEnum.values();

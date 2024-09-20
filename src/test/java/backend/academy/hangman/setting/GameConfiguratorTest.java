@@ -5,6 +5,7 @@ import backend.academy.hangman.enums.DifficultyEnum;
 import backend.academy.hangman.fabric.DifficultyStrategyFabric;
 import backend.academy.hangman.strategy.EasyDifficultyStrategy;
 import backend.academy.hangman.word.Word;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.regex.Pattern;
 
+@DisplayName("Тесты вторичной настройки GameConfigurator")
 @ExtendWith(MockitoExtension.class)
 public class GameConfiguratorTest {
 
@@ -29,6 +31,7 @@ public class GameConfiguratorTest {
     @InjectMocks
     private GameConfigurator gameConfigurator;
 
+    @DisplayName("Тест корректности установленных настроек")
     @Test
     public void testSetUpGame() {
         DifficultyEnum difficulty = DifficultyEnum.EASY;

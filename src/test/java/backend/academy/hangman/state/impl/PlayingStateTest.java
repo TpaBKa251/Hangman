@@ -9,6 +9,7 @@ import backend.academy.hangman.strategy.DifficultyStrategy;
 import backend.academy.hangman.word.Word;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@DisplayName("Тесты состояния процесса игры PlayingState")
 @ExtendWith(MockitoExtension.class)
 class PlayingStateTest {
 
@@ -67,6 +69,7 @@ class PlayingStateTest {
         System.setOut(originalSystemOut);
     }
 
+    @DisplayName("Тест перехода в состояние победы")
     @Test
     public void testHandleWin() {
         GameStates expectedState = GameStates.WIN;
@@ -83,6 +86,7 @@ class PlayingStateTest {
         assertEquals(expectedState, actualState);
     }
 
+    @DisplayName("Тест перехода в состояние поражения, если закончились попытки")
     @Test
     public void testHandleLose_attemptsEnded() {
         GameStates expectedState = GameStates.LOSE;
@@ -100,6 +104,7 @@ class PlayingStateTest {
         assertEquals(expectedState, actualState);
     }
 
+    @DisplayName("Тест перехода в состояние поражения, если пользователь сдался в начале")
     @Test
     public void testHandleLose_gaveUpInStart() {
         GameStates expectedState = GameStates.LOSE;
@@ -113,6 +118,7 @@ class PlayingStateTest {
         assertEquals(expectedState, actualState);
     }
 
+    @DisplayName("Тест перехода в состояние поражения, если пользователь сдался в середине игры")
     @Test
     public void testHandleLose_gaveUpInMiddle() {
         List<Character> correctLetters = List.of('А', '_');
@@ -131,6 +137,7 @@ class PlayingStateTest {
         assertEquals(expectedState, actualState);
     }
 
+    @DisplayName("Тест, проверяющий, что метод сравнения не вызывался на невалидной строке")
     @Test
     public void testInvalidInput() {
         when(reader.read()).thenReturn("1", "А");
@@ -145,6 +152,7 @@ class PlayingStateTest {
         verify(comparator, never()).compare('1');
     }
 
+    @DisplayName("Тест, проверяющий, что метод сравнения не вызывался при вводе уже введенного ранее символа")
     @Test
     public void testCompareWithUsedLetters() {
         when(reader.read()).thenReturn("А", "0");

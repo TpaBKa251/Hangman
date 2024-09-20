@@ -4,6 +4,7 @@ import backend.academy.hangman.setting.Settings;
 import backend.academy.hangman.state.GameBaseState;
 import backend.academy.hangman.state.GameStatesManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
@@ -15,6 +16,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@DisplayName("Тесты основного класса игры Game")
 @ExtendWith(MockitoExtension.class)
 class GameTest {
 
@@ -35,6 +37,7 @@ class GameTest {
         game.settings(settings);
     }
 
+    @DisplayName("Тест метода запуска игры")
     @Test
     public void testPlayGame() {
         when(gameStatesManager.currentState()).thenReturn(gameBaseState, (GameBaseState) null);
@@ -45,6 +48,7 @@ class GameTest {
         verify(gameStatesManager, times(1)).stateHandle(game);
     }
 
+    @DisplayName("Тест процесса игры с несколькими состояниями (с переключением между ними)")
     @Test
     public void testPlayGameWithMultipleStates() {
         when(gameStatesManager.currentState()).thenReturn(gameBaseState, gameBaseState, null);
@@ -55,7 +59,7 @@ class GameTest {
         verify(gameStatesManager, times(2)).stateHandle(game);
     }
 
-
+    @DisplayName("Тест цикла игры и порядка вызовов методов в GameStatesManager")
     @Test
     public void testPlayLoop() {
         when(gameStatesManager.currentState())

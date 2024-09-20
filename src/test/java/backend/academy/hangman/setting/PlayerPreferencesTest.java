@@ -9,6 +9,7 @@ import backend.academy.hangman.enums.DifficultyEnum;
 import backend.academy.hangman.input.Reader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+@DisplayName("Тесты первичной настройки PlayerPreferences")
 @ExtendWith(MockitoExtension.class)
 public class PlayerPreferencesTest {
     @Mock
@@ -44,6 +46,7 @@ public class PlayerPreferencesTest {
         System.setOut(originalSystemOut);
     }
 
+    @DisplayName("Тест выбора легкой сложности")
     @Test
     public void testSelectEasyDifficulty() {
         DifficultyEnum expectedDifficulty = DifficultyEnum.EASY;
@@ -55,6 +58,7 @@ public class PlayerPreferencesTest {
         assertEquals(expectedDifficulty, actualDifficulty);
     }
 
+    @DisplayName("Тест выбора средней сложности")
     @Test
     public void testSelectMediumDifficulty() {
         DifficultyEnum expectedDifficulty = DifficultyEnum.MEDIUM;
@@ -66,6 +70,7 @@ public class PlayerPreferencesTest {
         assertEquals(expectedDifficulty, actualDifficulty);
     }
 
+    @DisplayName("Тест выбора высокой сложности")
     @Test
     public void testSelectHardDifficulty() {
         DifficultyEnum expectedDifficulty = DifficultyEnum.HARD;
@@ -77,6 +82,7 @@ public class PlayerPreferencesTest {
         assertEquals(expectedDifficulty, actualDifficulty);
     }
 
+    @DisplayName("Тест выбора случайной сложности")
     @ParameterizedTest
     @ValueSource(strings = {"", "4", "\n", "w"})
     public void testSelectRandomDifficulty(String input) {
@@ -90,7 +96,7 @@ public class PlayerPreferencesTest {
         assertEquals(expectedDifficulty, actualDifficulty);
     }
 
-
+    @DisplayName("Тест выбора категории животные")
     @Test
     public void testSelectAnimalsCategory() {
         Category expectedCategory = Category.ANIMALS;
@@ -102,6 +108,7 @@ public class PlayerPreferencesTest {
         assertEquals(expectedCategory, actualCategory);
     }
 
+    @DisplayName("Тест выбора категории фильмы")
     @Test
     public void testSelectFilmsCategory() {
         Category expectedCategory = Category.FILMS;
@@ -113,6 +120,7 @@ public class PlayerPreferencesTest {
         assertEquals(expectedCategory, actualCategory);
     }
 
+    @DisplayName("Тест выбора случайной категории")
     @ParameterizedTest
     @ValueSource(strings = {"", "4", "\n", "w"})
     public void testSelectRandomCategory(String input) {

@@ -2,6 +2,7 @@ package backend.academy.hangman.word;
 
 import backend.academy.hangman.enums.Category;
 import backend.academy.hangman.enums.DifficultyEnum;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+@DisplayName("Тесты класса WordManager для получения случайного слова")
 @ExtendWith(MockitoExtension.class)
 public class WordManagerTest {
 
@@ -22,6 +24,7 @@ public class WordManagerTest {
     @InjectMocks
     private WordManager wordManager;
 
+    @DisplayName("Тест получения случайного слова легкой сложности категории животные")
     @Test
     public void testEasyAnimals() {
         Word expectedWord = new Word("КОТ", "Самое популярное домашнее животное");
@@ -36,6 +39,7 @@ public class WordManagerTest {
         assertEquals(expectedWord.help(), actualWord.help());
     }
 
+    @DisplayName("Тест получения случайного слова средней сложности категории фильмы")
     @Test
     public void testMediumFilms() {
         Word expectedWord = new Word("ТЕРМИНАТОР", "Фильм про борьбу человечества с машинами");
@@ -50,6 +54,7 @@ public class WordManagerTest {
         assertEquals(expectedWord.help(), actualWord.help());
     }
 
+    @DisplayName("Тест получения случайного слова высокой сложности категории животные")
     @Test
     public void testHardAnimals() {
         Word expectedWord = new Word("АВСТРАЛИЙСКАЯ ЕХИДНА", "Перевернутый антагонист Соника");

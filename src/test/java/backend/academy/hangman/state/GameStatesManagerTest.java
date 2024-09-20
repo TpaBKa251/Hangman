@@ -4,6 +4,7 @@ import backend.academy.hangman.Game;
 import backend.academy.hangman.enums.GameStates;
 import backend.academy.hangman.fabric.GameStatesFabric;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@DisplayName("Тесты менеджера состояний GameStatesManager")
 @ExtendWith(MockitoExtension.class)
 public class GameStatesManagerTest {
 
@@ -45,6 +47,7 @@ public class GameStatesManagerTest {
         gameStatesManager = new GameStatesManager(gameStatesFabric);
     }
 
+    @DisplayName("Тест, проверяющий начальное состояние")
     @Test
     public void testInitialState() {
         GameBaseState expectedState = settingsState;
@@ -54,6 +57,7 @@ public class GameStatesManagerTest {
         assertEquals(expectedState, actualState);
     }
 
+    @DisplayName("Тест, проверяющий метод переключения между состояниями")
     @Test
     public void testSwitchState() {
         GameBaseState expectedState1 = playingState;
@@ -74,6 +78,7 @@ public class GameStatesManagerTest {
         assertEquals(expectedState3, actualState);
     }
 
+    @DisplayName("Тест, проверяющий автоматическое переключение состояний")
     @Test
     public void testStateHandleAndNextState() {
         GameBaseState expectedState1 = playingState;

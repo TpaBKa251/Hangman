@@ -5,11 +5,13 @@ import backend.academy.hangman.enums.DifficultyEnum;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Тесты словаря record Dictionary")
 public class DictionaryTest {
 
     private Dictionary dictionary;
@@ -19,11 +21,13 @@ public class DictionaryTest {
         dictionary = Dictionary.DictionaryInitializer.initialize();
     }
 
+    @DisplayName("Тест инициализации словаря")
     @Test
     public void testInitialize() {
         assertThat(dictionary.dictionary()).isNotNull();
     }
 
+    @DisplayName("Тест, проверяющий наличие всех категорий")
     @ParameterizedTest
     @EnumSource(DifficultyEnum.class)
     public void testContainsCategories(DifficultyEnum difficulty) {
@@ -33,12 +37,14 @@ public class DictionaryTest {
         assertThat(wordsByCategory.keySet()).containsExactlyInAnyOrder(Category.ANIMALS, Category.FILMS);
     }
 
+    @DisplayName("Тест, проверяющий наличие всех сложностей")
     @Test
     public void testContainsDifficulties() {
         assertThat(dictionary.dictionary().keySet())
             .containsExactlyInAnyOrder(DifficultyEnum.EASY, DifficultyEnum.MEDIUM, DifficultyEnum.HARD);
     }
 
+    @DisplayName("Тест, проверяющий наличие всех слов всех категорий для легкой сложности")
     @Test
     public void testEasyDifficulty() {
         HashMap<Category, List<Word>> wordsByCategory = dictionary.dictionary().get(DifficultyEnum.EASY);
@@ -56,6 +62,7 @@ public class DictionaryTest {
         );
     }
 
+    @DisplayName("Тест, проверяющий наличие всех слов всех категорий для средней сложности")
     @Test
     public void testMediumDifficulty() {
         HashMap<Category, List<Word>> wordsByCategory = dictionary.dictionary().get(DifficultyEnum.MEDIUM);
@@ -73,6 +80,7 @@ public class DictionaryTest {
         );
     }
 
+    @DisplayName("Тест, проверяющий наличие всех слов всех категорий для высокой сложности")
     @Test
     public void testHardDifficulty() {
         HashMap<Category, List<Word>> wordsByCategory = dictionary.dictionary().get(DifficultyEnum.HARD);
