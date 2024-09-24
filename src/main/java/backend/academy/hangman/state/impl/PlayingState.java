@@ -85,10 +85,9 @@ public class PlayingState implements GameBaseState {
 
         if (!game.settings().comparator().compare(symbol)) {
             wrongGuess(game);
-            return;
+        } else {
+            correctGuess(game);
         }
-
-        correctGuess(game);
     }
 
     /**
