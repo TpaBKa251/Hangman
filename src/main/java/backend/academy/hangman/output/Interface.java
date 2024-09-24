@@ -15,10 +15,6 @@ public class Interface {
      * @param newLine флаг вывода с новой строки
      */
     public static void print(String message, boolean newLine) {
-        if (newLine) {
-            System.out.println(message);
-        } else {
-            System.out.print(message);
-        }
+        System.out.print(newLine ? "\n" + message: message);
     }
 }

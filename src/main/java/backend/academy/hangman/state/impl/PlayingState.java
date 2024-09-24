@@ -20,6 +20,8 @@ public class PlayingState implements GameBaseState {
     private boolean win;
     private final Reader reader;
 
+    private static final int TWO = 2;
+
     /**
      * Метод с логикой игры
      * @param game экземпляр класса игры {@link Game}
@@ -55,11 +57,7 @@ public class PlayingState implements GameBaseState {
      */
     @Override
     public GameStates nextState() {
-        if (win) {
-            return GameStates.WIN;
-        }
-
-        return GameStates.LOSE;
+        return win ? GameStates.WIN : GameStates.LOSE;
     }
 
     /**
@@ -82,12 +80,13 @@ public class PlayingState implements GameBaseState {
     private void compare(Game game, char symbol) {
         if (game.settings().comparator().compareWithUsedLetters(symbol)) {
             Interface.print("Вы уже вводили этот символ", true);
+            return;
+        }
+
+        if (!game.settings().comparator().compare(symbol)) {
+            wrongGuess(game);
         } else {
-            if (!game.settings().comparator().compare(symbol)) {
-                wrongGuess(game);
-            } else {
-                correctGuess(game);
-            }
+            correctGuess(game);
         }
     }
 
@@ -108,7 +107,7 @@ public class PlayingState implements GameBaseState {
 
         printInterface(game, false);
 
-        if (currAttempt >= game.settings().difficulty().getMaxAttempts() / 2
+        if (currAttempt >= game.settings().difficulty().getMaxAttempts() / TWO
             && currAttempt < game.settings().difficulty().getMaxAttempts()) {
             Interface.print("\nПодсказка: " + game.settings().word().help(), true);
         }
@@ -142,7 +141,7 @@ public class PlayingState implements GameBaseState {
         Interface.print("\nСложность: " + game.settings().difficulty().getDifficulty()
             + "\nКатегория: " + game.settings().category()
             + "\nОставшееся количество попыток: " + (game.settings().difficulty().getMaxAttempts() - currAttempt
-            + "\n\nСлово:"), true);
+            + "\n\nСлово:\n"), true);
 
         if (isCorrect) {
             win = true;
@@ -160,7 +159,7 @@ public class PlayingState implements GameBaseState {
             }
         }
 
-        Interface.print("\nНеправильные символы: ", true);
+        Interface.print("\nНеправильные символы:\n", true);
 
         for (char letter : game.settings().comparator().wrongLetters()) {
             Interface.print(letter + "", false);
