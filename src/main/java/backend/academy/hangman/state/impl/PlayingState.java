@@ -138,11 +138,21 @@ public class PlayingState implements GameBaseState {
     private void printInterface(Game game, boolean isCorrect) {
         game.settings().difficulty().printGallows(currAttempt);
 
+        printSettings(game);
+        printCorrectLetters(game, isCorrect);
+        printWrongLetters(game);
+
+        Interface.print("", true);
+    }
+
+    private void printSettings(Game game) {
         Interface.print("\nСложность: " + game.settings().difficulty().getDifficulty()
             + "\nКатегория: " + game.settings().category()
             + "\nОставшееся количество попыток: " + (game.settings().difficulty().getMaxAttempts() - currAttempt
             + "\n\nСлово:\n"), true);
+    }
 
+    private void printCorrectLetters(Game game, boolean isCorrect) {
         if (isCorrect) {
             win = true;
 
@@ -153,18 +163,20 @@ public class PlayingState implements GameBaseState {
                     win = false;
                 }
             }
-        } else {
-            for (char letter : game.settings().comparator().correctLetters()) {
-                Interface.print(letter + "", false);
-            }
+
+            return;
         }
 
+        for (char letter : game.settings().comparator().correctLetters()) {
+            Interface.print(letter + "", false);
+        }
+    }
+
+    private void printWrongLetters(Game game) {
         Interface.print("\nНеправильные символы:\n", true);
 
         for (char letter : game.settings().comparator().wrongLetters()) {
             Interface.print(letter + "", false);
         }
-
-        Interface.print("", true);
     }
 }
